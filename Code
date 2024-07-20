@@ -1,0 +1,31 @@
+import random
+import os
+n = random.randint(1,100)
+guess = 0
+a = -1
+while a!=n:
+
+    guess += 1
+    a = int(input(f"enter your guess : "))
+    if (a>n):
+        print(f"enter lower no. please ")
+    elif (a<n):
+        print(f"enter higher no. please")  
+    else:      
+        print(f"Congratulations you have guessed the no. {n} in {guess} attempts ")
+if not os.path.exists("guesshighscore.txt"):
+    with open("guesshighscore.txt","w") as f:
+        hs = f.write("")
+
+with open("guesshighscore.txt","r") as f:        
+    hs = f.read().strip()
+    if(hs==""):
+        hs = float('inf')
+    # else:
+    #     hs = int(hs)  
+    if(int(guess) < int(hs)):
+        with open("highscore.txt","w")as f:
+            f.write(str(guess))
+        print(f"highscore is {guess}")    
+    else:
+     print(f"highscore is {hs}")
